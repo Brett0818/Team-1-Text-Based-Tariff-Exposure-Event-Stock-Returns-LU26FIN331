@@ -20,10 +20,16 @@ NOTEBOOKS = sorted((ROOT / "code").glob("0*.ipynb"))
 
 for nb in NOTEBOOKS:
     print(f"Running {nb.name} ...", flush=True)
-    subprocess.run(
+    result = subprocess.run(
         [sys.executable, "-m", "nbconvert", "--to", "notebook", "--execute", "--inplace",
          "--ExecutePreprocessor.timeout=1800", str(nb)],
-        check=True,
     )
+    if result.returncode != 0:
+        print("\n" + "!" * 70)
+        print(f"STOPPED: {nb.name} failed. Nothing after it was run.")
+        print("Scroll up to the error message, fix the problem, and run run_all.py again.")
+        print("Do NOT upload these results to GitHub: they are incomplete.")
+        print("!" * 70)
+        sys.exit(1)
 
 print("\nDone. Final dataset: outputs/final_dataset.csv")
