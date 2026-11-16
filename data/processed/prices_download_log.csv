@@ -1,0 +1,2 @@
+source,yfinance_version,symbols,start,end_exclusive,rows,downloaded_at_utc
+Yahoo Finance via yfinance,0.2.66,AAPL NKE BBY TGT COST CAT TSLA MSFT JNJ XOM SPY,2023-10-01,2025-04-30,4345,2026-11-16 04:15
