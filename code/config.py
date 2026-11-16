@@ -43,6 +43,12 @@ SEC_HEADERS = {"User-Agent": f"Lehigh FIN331 Team1 research {SEC_EMAIL}"}
 TICKERS = ["AAPL", "NKE", "BBY", "TGT", "COST", "CAT", "TSLA", "MSFT", "JNJ", "XOM"]
 MARKET = "SPY"  # benchmark for the market model
 
+# Point-in-time CIK fixes. SEC's ticker->CIK list is CURRENT, so a ticker can now point to a
+# different (newer) registrant than the one that existed in early 2025. Pin the historical CIK here.
+#   XOM: SEC's current list maps XOM to CIK 0002115436 (a new registrant with no pre-2025 10-K).
+#        ExxonMobil's historical CIK, which filed the 10-K on 2025-02-19, is 0000034088.
+CIK_OVERRIDES = {"XOM": "0000034088"}
+
 # ----------------------------------------------------------------------------
 # Event timing
 #   "Liberation Day" tariffs were announced Wed Apr 2, 2025 AFTER the close.
@@ -54,12 +60,14 @@ ANNOUNCEMENT_DATE = "2025-04-02"
 EVENT_DAY0 = "2025-04-03"
 TENK_CUTOFF = "2025-04-02"   # a 10-K counts only if filed STRICTLY before this date
 
-PRICE_START = "2024-01-01"
+PRICE_START = "2023-10-01"   # leaves room for the ~1-year estimation window
 PRICE_END = "2025-04-30"     # yfinance end date is exclusive
 
-# Market model estimation window, in trading days relative to day 0
-EST_START, EST_END = -130, -11
-MIN_EST_OBS = 100
+# Market model estimation window, in trading days relative to day 0.
+# v0a used -130..-11 (about 6 months): betas were unstable (JNJ -0.14, TSLA 2.94). See specs_tried.md.
+# v0b uses about one year, the standard choice in event studies.
+EST_START, EST_END = -260, -11
+MIN_EST_OBS = 200
 VOL_WINDOW = 60              # pre-event volatility: daily returns over days -60..-1
 
 # Event windows (inclusive, trading days). car_0_1 = Apr 3-4 is the main test.

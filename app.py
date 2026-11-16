@@ -108,7 +108,7 @@ with tab_method:
     st.markdown("Phrases include *tariff(s)*, *trade war / trade policy*, *import / customs / anti-dumping duties*, "
                 "*Section 301 / 232*. The plain word *duty* is excluded, so *fiduciary duty* doesn't count.")
     st.subheader("Event study")
-    st.latex(r"R_{i,t}=\alpha_i+\beta_i R_{SPY,t}+\varepsilon_{i,t}\quad\text{(estimated on trading days }-130\text{ to }-11)")
+    st.latex(r"R_{i,t}=\alpha_i+\beta_i R_{SPY,t}+\varepsilon_{i,t}\quad\text{(estimated on trading days }-260\text{ to }-11,\ \approx 1\text{ year)}")
     st.latex(r"CAR_i[0,+1]=\sum_{t=0}^{1}\big(R_{i,t}-\hat\alpha_i-\hat\beta_i R_{SPY,t}\big)")
     st.markdown(
         "**Timing:** the announcement came after the close on Apr 2, so **day 0 = Apr 3**. The 90-day pause "
