@@ -1,0 +1,11 @@
+ticker,in_final,problem
+AAPL,True,
+NKE,True,
+BBY,True,
+TGT,True,
+COST,True,
+CAT,True,
+TSLA,True,
+MSFT,True,
+JNJ,True,
+XOM,False,no 10-K filed before 2025-04-02
