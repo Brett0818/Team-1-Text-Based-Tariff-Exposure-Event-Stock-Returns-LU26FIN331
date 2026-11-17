@@ -1,0 +1,8 @@
+Why I picked:
+I am testing whether S&P 500 companies with higher import and China exposure dropped more after the April 2, 2025 tariff announcement. This helps CFOs and strategists benchmark their own supply-chain risk against peers. For the MVP, I am matching pre-April 2025 EDGAR 10-K filings with Yfinance stock returns, scoring exposure with an LLM rubric, running a regression with industry controls, and building a filterable scatter plot. As a stretch goal, I will check if those same exposed stocks bounced back during the April 9 tariff pause.
+What My Proof of Concept Got (and What Broke):
+My v0 notebook sets up the core pipeline on five test stocks (AAPL, TSLA, CAT, COST, NKE): fetching pre-April 2025 10-Ks from EDGAR, downloading SPY and stock prices from yfinance, and running a basic keyword-count baseline. However, the code doesn't run yet due to several bugs: missing yfinance and HEADERS definitions, syntax/indentation errors, and an uninitialized records list in the scoring step. It also still needs the actual LLM scoring rubric and abnormal return (CAR) calculations built out.
+Questions
+Since the news dropped after the market closed on April 2, should April 3 count as Day 0
+What parameters should we keep in mind when designing the LLM rubric 
+Since the LLM might know how these companies performed in April 2025, should I hide company names and tickers from the 10-K text before scoring?
