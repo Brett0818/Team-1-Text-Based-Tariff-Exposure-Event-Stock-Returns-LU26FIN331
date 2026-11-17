@@ -1,0 +1,3 @@
+python -m venv test_env
+source test_env/bin/activate  # On Windows use: test_env\Scripts\activate
+pip install -r requirements.txt
